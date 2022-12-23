@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+send_notification() {
+  name="$(mpc current)"
+  get_icon
+
+  if [ -z "$(pidof dunst)" ]; then
+    dunstify -a "mpd-notifications" -u low -r "9993" -i "$icon" "Currently playing: " "$name" -t 2000
+  else
+    notify-send "Currently playing: " "$name"
+  fi
+}
+
+get_icon() {
+  FILEPATH="$(mpc --format '%file%' | head -n 1)"
+  FILEDIR="${FILEPATH%/*}"
+  REGEX="(album|cover|\.?folder|front).*\.(gif|jpeg|jpg|png)"
+
+  # MUSIC_DIR="$(cat "$HOME/.config/mpd/mpd.conf" | /bin/grep 'music_directory' | head -n 1 | awk '{print $2}')"
+  MUSIC_DIR="${HOME}/music"
+
+  ICON_DIR="$MUSIC_DIR/$(dirname "$FILEDIR")"
+  icon="$(fd "$REGEX" "$ICON_DIR" | head -n 1)"
+}
+
+IFS=''
+send_notification

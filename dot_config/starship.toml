@@ -1,0 +1,104 @@
+format = "$all"
+
+[character]
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
+
+[directory]
+read_only = ""
+truncation_length = 10
+truncate_to_repo = true
+style = "bold italic blue"
+
+[username]
+format = "[$user](bold #ffcc99)"
+show_always = true
+
+[hostname]
+format = "[@$hostname](bold #ffddf4) "
+ssh_only = false
+
+[status]
+format = "[$status ](bold red)"
+disabled = false
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[meson]
+symbol = "喝 "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "ﳒ "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[spack]
+symbol = "🅢 "

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Simple script that uses a dictionary api to get the definition
+
+LINK="https://api.dictionaryapi.dev/api/v2/entries/en/$1"
+
+definitions() {
+  curl -s "$LINK" | jq '.[0].meanings' | jq '.[].definitions' | jq '.[].definition'
+}
+
+
+definitions

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function send_notification() {
+    VOLUME=$(mpc status "%volume%" | sed "s/[^0-9]//g")
+    NAME="$(mpc current)"
+    get_icon
+
+    dunstify -a "mpdvolume" -u low -r "9994" -h int:value:"$VOLUME" -i "$ICON" "MPD Volume: $VOLUME%" "$NAME" -t 2000
+}
+
+function get_icon() {
+    FILEPATH="$(mpc --format '%file%' | head -n 1)"
+    FILEDIR="${FILEPATH%/*}"
+    REGEX="cover"
+
+    # MUSIC_DIR="$(cat "$HOME/.config/mpd/mpd.conf" | /bin/grep 'music_directory' | head -n 1 | awk '{print $2}')"
+    MUSIC_DIR="${HOME}/music"
+
+    ICON_DIR="$MUSIC_DIR/$FILEDIR"
+    ICON="$(fd $REGEX $ICON_DIR | head -n 1)"
+}
+
+IFS=''
+case $1 in
+    up)
+        mpc volume +1 && send_notification "$1"
+        ;;
+    down)
+        mpc volume -1 && send_notification "$1"
+        ;;
+    mute)
+        mpc volume 0 && send_notification "$1"
+        ;;
+esac

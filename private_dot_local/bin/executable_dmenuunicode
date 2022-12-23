@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+chosen="$(cut -d ';' -f1 ~/.local/share/pindots/chars/* | dmenu -i -l 30 | sed 's/ .*//')"
+[ -z "$chosen" ] && exit
+
+if [ -n "$1" ]; then
+  xdotool type "$chosen"
+else
+  echo "$chosen" | xclip -selection clipboard
+  notify-send "'$chosen' copied to cliboard." &
+fi

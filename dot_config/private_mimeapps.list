@@ -1,0 +1,24 @@
+[Default Applications]
+text/x-shellscript=text.desktop;
+text/x-script.python=text.desktop;
+x-scheme-handler/magnet=torrent.desktop;
+application/x-bittorrent=torrent.desktop;
+text/plain=text.desktop;
+application/postscript=pdf.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+text/csv=text.desktop;
+video/x-matroska=video.desktop;
+inode/directory=file.desktop
+x-scheme-handler/http=browser.desktop
+x-scheme-handler/https=browser.desktop
+x-scheme-handler/chrome=browser.desktop
+text/html=browser.desktop
+application/x-extension-htm=browser.desktop
+application/x-extension-html=browser.desktop
+application/x-extension-shtml=browser.desktop
+application/xhtml+xml=browser.desktop
+application/x-extension-xhtml=browser.desktop
+application/x-extension-xht=browser.desktop

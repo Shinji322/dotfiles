@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "
+This is a simple program for automating the compilation of programs. It is used by my personal nvim config for conveniences sake.
+
+Usage:
+  $0 filename
+  $0 main.rs
+  $0 main.rmd
+"
+  exit 1
+}
+
+[ -z "$1" ] && usage
+
+case "${1%.}" in
+  *.rs)
+    cargo build
+    ;;
+  *.c|*.cpp)
+    make
+    ;;
+  *.go)
+    go build
+    ;;
+  *.rmd)
+    Rscript -e "rmarkdown::render($1)"
+    ;;
+  *.tex)
+    pdflatex "$1"
+    ;;
+  *)
+    usage
+    ;;
+esac

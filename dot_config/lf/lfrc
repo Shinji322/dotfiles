@@ -1,0 +1,173 @@
+# Basic Settings
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+set filesep "\n"  # default already
+# on zsh, -y is very necessary because zsh doesn't separate $fx properly, treating it as one string
+
+set scrolloff 10
+set period 1
+set hidden true
+set drawbox true
+set icons true
+set ignorecase true
+set cleaner '~/.config/lf/cleaner'
+set previewer '~/.config/lf/scope'
+
+# ==================== Commands ==========================================
+cmd open ${{
+  case $(file --mime-type "$(readlink -f $f)" -b) in
+    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+    application/vnd.oasis.opendocument.*) libreoffice $fx ;;
+    image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
+          text/*|application/json|inode/x-empty) $EDITOR $fx;;
+    image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+    image/svg+xml) display -- $f ;;
+    image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
+      setsid -f sxiv -aio 2>/dev/null | while read -r file; do
+        [ -z "$file" ] && continue
+        lf -remote "send select \"$file\""
+        lf -remote "send toggle"
+      done &
+      ;;
+    audio/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+    video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+    application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+    application/pgp-encrypted) $EDITOR $fx ;;
+    *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+  esac
+}}
+
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+cmd paste &{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    case "$mode" in
+        copy)
+            rsync -av --ignore-existing --progress -- "$@" . |
+            stdbuf -i0 -o0 -e0 tr '\r' '\n' |
+            while IFS= read -r line; do
+                lf -remote "send $id echo $line"
+            done
+            ;;
+        move) mvg -g -i -n -- "$@" .;;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
+}}
+cmd extract ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "extract?[y/N] "
+	read ans
+	[ $ans = "y" ] && aunpack $fx
+}}
+
+cmd trash ${{
+  clear; tput bold; tput setaf 4;
+  printf '\n%s' "$fx"
+
+  tput setaf 1;
+  printf "\n\tdelete?[y/N] "
+  read ans
+
+  [ "$ans" != "y" ] && exit
+  trash-put -- $fx
+}}
+cmd clear_trash %trash-empty
+cmd restore_trash ${{
+  ids="$(echo -ne '\n'              | \
+    trash-restore                   | \
+    awk '$1 ~ /^[0-9]+/ {print $0}' | \
+    fzf --multi                     | \
+    awk '{print $1}'                | \
+    sed -z 's/\n/,/g;s/,$/\n/')"
+  echo $ids | trash-restore
+  clear
+}}
+cmd setwallpaper ${{
+  setbg "$fx" &
+}}
+
+cmd fzf_jump ${{
+  res="$(fd -H . --max-depth=3 | fzf --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+cmd tmux_new_window_right %{{
+  setsid -f tmux splitw -h -p "$(bc <<< "$(tput cols) / 2")" -- lfup
+}}
+
+
+# ==================== Remaps ==================================
+map x cut
+map c
+map m
+map f
+map d
+map t
+map u
+
+# ==================== Command Bindings ==================================
+cmap <up> cmd-history-prev
+cmap <down> cmd-history-next
+map D trash
+map U restore_trash
+map P paste
+map bg setwallpaper
+map dr $dragon-drop "$f"
+map f fzf_jump
+map tr tmux_new_window_right
+map ur extract
+
+# ==================== Other Bindings ==================================
+map E $$EDITOR "$f"
+map R $vidir
+map Y $xclip -selection clipboard < "$f"
+map C $printf "%s" "$fx" | xclip -selection clipboard
+map mb $cp -ri "$f" "$f.bak"
+
+
+# ==================== cd to common directories ==================================
+map gtr  cd ~/.local/share/Trash/files
+map gm   cd /run/media/mokou
+
+map gv.  cd ~/video
+map gva  cd ~/video/anime
+
+map gi.  cd ~/images
+map gis  cd ~/images/screenshots
+map giw  cd ~/images/walls
+map gia  cd ~/images/anime
+
+map gD   cd ~/documents
+map gd   cd ~/dwnloads
+
+map gs   cd ~/software
+
+map gC   cd ~/.cache
+map gc.  cd ~/.config
+map gce  cd ~/.config/nvim # Supposed to mean gc Editor
+map gcl  cd ~/.config/lf
+map gcs  cd ~/.config/shell
+map gcz  cd ~/.config/zsh
+map gct  cd ~/.config/kitty
+map gcx  cd ~/.config/x11
+map gck  cd ~/.config/sxhkd
+map gcw  cd ~/.config/i3
+map gcp  cd ~/.config/polybar
+
+map gL  cd ~/literature
+
+map gl. cd ~/.local
+map gls cd ~/.local/src
+map glS cd ~/.local/share
+map glr cd ~/.local/repos
+map glb cd ~/.local/bin
+map gE  cd /etc

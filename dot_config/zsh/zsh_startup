@@ -1,0 +1,7 @@
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
+
+# [ -z "$TMUX" ] && tmux
+# if [[ ! $(tmux list-sessions) ]]; then
+#   tmux
+# fi

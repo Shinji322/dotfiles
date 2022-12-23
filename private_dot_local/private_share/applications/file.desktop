@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=lf
+GenericName=File manager
+Comment="list files"
+Exec=alacritty /home/mokou/.local/bin/lfup %u

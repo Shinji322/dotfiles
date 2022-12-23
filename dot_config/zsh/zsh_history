@@ -1,0 +1,5 @@
+export HISTFILE=$XDG_CACHE_HOME/zsh/history
+
+setopt share_history
+HISTSIZE=10000000
+SAVEHIST=10000000

@@ -1,0 +1,92 @@
+#!/bin/bash -x
+# This is a simple script that sets up programming projects for me helpers
+setvars() {
+  SOURCE_DIR="${XDG_SOURCE_HOME:-$HOME/.local/src}"
+  [ ! -d "$XDG_SOURCE_HOME" ] && mkdir -pv "$HOME/.local/src"
+}
+getargs() {
+  opts=$(getopt -o gnsf -l no-git,name,source-dir,fzf -n "$0" -- "$@") || exit
+  eval set -- "$opts"
+}
+
+# project makers
+# Helper func
+py() {
+  virtualenv "$1/venv" && {
+    source "$1/venv/bin/activate"
+
+    shift
+    pip install "$@"
+  }
+  pip freeze > "requirements.txt"
+}
+check_git() {
+  if $GIT; then
+    git init
+    echo "$1" >> README.md
+  fi
+}
+
+
+main() {
+  # new python webscraper -n nyaa
+  # new python -n
+  setvars
+  lang="$1"
+  type="$2"
+  shift 2
+  getargs "$@"
+
+  while [ "$1" != -- ]; do
+    case $1 in
+      -n|--name)
+        PROJ_NAME="$2"
+        shift 2
+        ;;
+      -g|--no-git)
+        GIT=false
+        shift
+        ;;
+      -s|--source-dir)
+        SOURCE_DIR="$2"
+        shift 2
+        ;;
+      -f|--fzf)
+        # This will be completely different
+        ;;
+    esac
+  done
+
+  case $lang in
+    py|python|p)
+      case $type in
+        webscraper|scraper)
+          [ -z "$PROJ_NAME" ] && PROJ_NAME="New_Webscraping_Project"
+          py "$PROJ_NAME" debugpy beautifulsoup4 httpx lxml autoscraper
+          check_git "$PROJ_NAME"
+          ;;
+        flask|flaskapp)
+          [ -z "$PROJ_NAME" ] && PROJ_NAME="New_Webscraping_Project"
+          py "$PROJ_NAME" debugpy Flask
+          check_git "$PROJ_NAME"
+          ;;
+        *)
+          echo "Creating regular python project"
+          [ -z "$PROJ_NAME" ] && PROJ_NAME="New_Regular_Python_Project"
+          py "$PROJ_NAME" debugpy
+          check_git "$PROJ_NAME"
+          ;;
+      esac
+      ;;
+    rs|rust)
+      echo "It is preferred to use cargo instead"
+      # I'll add some stuff here later
+      ;;
+    *)
+      echo "Language not implemented"
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"

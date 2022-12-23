@@ -1,0 +1,4 @@
+# bindkey -s '^o' 'exit\n'
+bindkey -s '^O' '^ulfcd\n'
+bindkey -s '^f' '^uzi\n'
+bindkey -s '^w' '^ucht\n'
