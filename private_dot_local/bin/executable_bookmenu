@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+dependencies=('sed' 'dmenu|fzf')
+DATA="${XDG_DATA_HOME:-$HOME/.local/share}/bookmarks"
+MENU="dmenu"
+
+uexit() {
+  echo "bookmenu is a simple shell script for managing bookmarks with 0 storage. It simply stores bookmarks, allows you to select them with fzf or dmenu, and then xdg-opens it!
+
+Usage:
+# Extract links from a bookmarks.html file (exported from your browser)
+  $0 -e bookmarks.html
+
+  $0 -f    # fzf
+  $0       # dmenu
+
+Folder Structure:
+  
+"
+  exit "$1"
+}
+
+open() {
+  # Might change later. Perhaps the file will contain a descriptor containing if it's a link, a file path to open in a file manager or something else
+  xdg-open "$1"
+}
+
+list() {
+  
+  SEL="$(find "$DATA" -type f -printf '%f\n' | sed 's|%|/|g' | $MENU)"
+  [ -z "$SEL" ] && uexit 1
+  open "$SEL"
+}
+
+extract() {
+  IFS=$'\n'
+  TEXTS=($(htmlq 'dt a' -t < "$1"))
+  LINKS=($(htmlq 'dt a' -a href < "$1" | sed 's|/|%|g'))
+
+  [ "${#TEXTS[@]}"  != "${#LINKS[@]}" ] && exit 2
+
+  for i in "${!TEXTS[@]}"; do
+    # Allow user to deal with this in stdout
+    printf "%s\t;\t%s\n" "${TEXTS[$i]}" "${LINKS[$i]}"
+  done
+
+  unset IFS
+}
+
+
+# main() {
+[ ! -d "$DATA" ] && mkdir -p "$DATA"
+# removed colons are around flags that do not require arguments. Otherwise it would be e:f:
+while getopts e:fa: OPT ; do
+  case $OPT in
+    f)
+      MENU="fzf"
+      ;;
+    e)
+      extract "$OPTARG"
+      exit 0
+      ;;
+    a)
+      exit 0
+      ;;
+    *)
+      echo "$OPT is an invalid option"
+      ;;
+  esac
+done
+list
+# }
