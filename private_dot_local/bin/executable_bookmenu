@@ -46,6 +46,16 @@ extract() {
   unset IFS
 }
 
+add() {
+  # Using this to set certains trings of stuff to certain directories
+  grep -Eq 'https:%%www.git(hub|lab|ea).*' <<< "$1" && DATA="${DATA}/repos"
+  grep -Eq 'youtube.com/channel' <<< "$1" && DATA="${DATA}/media/yt/channels"
+  grep -Eq 'youtube.com/watch' <<< "$1" && DATA="${DATA}/media/yt/vids"
+  grep -Eq 'reddit.com/r.*' <<< "$1" && DATA="${DATA}/media/subreddits"
+  [ ! -d "$DATA" ] && mkdir -p "$DATA"
+  touch "${DATA}/$1"
+}
+
 
 # main() {
 [ ! -d "$DATA" ] && mkdir -p "$DATA"
@@ -60,6 +70,7 @@ while getopts e:fa: OPT ; do
       exit 0
       ;;
     a)
+      add "$(sed 's|/|%|g' <<< "$OPTARG")"
       exit 0
       ;;
     *)
