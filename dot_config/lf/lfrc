@@ -13,6 +13,7 @@ set icons true
 set ignorecase true
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
+set autoquit on
 
 # ==================== Commands ==========================================
 cmd open ${{
