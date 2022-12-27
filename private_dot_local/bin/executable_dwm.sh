@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-(sleep 2; autorandr) &
+(sleep 1; autorandr) &
 
 # Allows you to restart dwm without killing Xorg 
 while true; do
