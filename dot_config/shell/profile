@@ -37,8 +37,7 @@ export VISUAL="nvim"
 export PAGER="less"
 export WM="dwm"
 export SHELL="/usr/bin/zsh"
-export BROWSER="chromium"
-export ICON_THEME="Paper"
+export BROWSER="firefox"
 
 # Misc
 # blocks telemetry
