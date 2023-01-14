@@ -1,12 +1,36 @@
 # vim: filetype=sh
 
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+
+for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
+	alias $command="sudo $command"
+done; unset command
+
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	bc="bc -ql" \
+	mkd="mkdir -pv" \
+	yt="yt-dlp --embed-metadata -i" \
+	yta="yt -x -f bestaudio/best" \
+	ffmpeg="ffmpeg -hide_banner"
+
 # ~-=| Built in Aliases |=-~
+# Colorize commands when possible.
 alias l='exa -laG --icons --color=always --group-directories-first'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi" \
+	ip="ip -color=auto"
 
 # ~-=| Streamlining basic commands |=-~
 alias rm='trash'
@@ -15,20 +39,14 @@ alias mv='mv -i'
 alias du='du -h'
 alias df='df -h'
 alias grep='grep -i --color=auto'
-alias mkdir='mkdir -p'
 
 # ~-=| Shortcuts |=-~
-alias scim='sc-im'
 alias cat='bat'
 alias sxiv='sxiv -a'
-alias strx='startx /home/mokou/.config/x11/xinitrc'
 alias locate='sudo updatedb; locate -i'
 alias rsync='rsync -arP --stats'
 
 #  ~-=| Others |=-~
-#alias 'pacman -Sy'='pacman -Syu'
-alias con='/usr/bin/lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias poweroff='printf "Are you sure you would like to poweroff? [y/N] "; read -r REPLY; [ $REPLY = "y" ] && poweroff'
 
 
@@ -51,15 +69,13 @@ alias mbsync='mbsync -c "$XDG_CONFIG_HOME/mbsync/config"'
 # Let's move faster
 alias p='sudo pacman'
 alias y='yay'
-alias f='$FILE'
+alias f='lfcd'
 alias e='$EDITOR'
 alias v='$EDITOR'
-alias yt='yt-dlp --add-metadata -i'
 # Let zsh get the entire history 
 alias hist='history 1'
 alias rfrsh='source ~/.config/zsh/.zshrc'
 alias iost='iostat -sxmhtc --dec=0'
-alias hss='hugo server --noHTTPCache'
 alias ifconfig='ip a'
 
 # Git commands

@@ -15,7 +15,7 @@ export BINARIES_DIR="$HOME/software/binaries"
 
 # Add ~/.local/bin to PATH
 #export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
-export PATH="$PATH:${HOME}/.local/bin"
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 . "$HOME/.local/share/cargo/env"
 export PATH="$PATH:$HOME/.local/share/cargo/bin"
 export PATH="$PATH:$HOME/.local/share/go/bin"
@@ -31,7 +31,7 @@ unsetopt PROMPT_SP
 # Default Programs (most are just for use in scripts)
 export TERMINAL="alacritty"
 export EDITOR="nvim"
-export FILE="lfcd"
+export FILE="$HOME/.local/bin/lfub"
 export READER="zathura"
 export VISUAL="nvim"
 export PAGER="less"
