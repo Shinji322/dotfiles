@@ -52,7 +52,7 @@ cmd paste &{{
                 lf -remote "send $id echo $line"
             done
             ;;
-        move) mvg -g -i -n -- "$@" .;;
+        move) mv -i -n -- "$@" .;;
     esac
     rm ~/.local/share/lf/files
     lf -remote "send clear"
@@ -139,16 +139,16 @@ map mb $cp -ri "$f" "$f.bak"
 map gtr  cd ~/.local/share/Trash/files
 map gm   cd /run/media/mokou
 
-map gv.  cd ~/video
-map gva  cd ~/video/anime
+map gv.  cd ~/vid
+map gva  cd ~/vid/anime
 
-map gi.  cd ~/images
-map gis  cd ~/images/screenshots
-map giw  cd ~/images/walls
-map gia  cd ~/images/anime
+map gi.  cd ~/img
+map gis  cd ~/img/screenshots
+map giw  cd ~/img/walls
+map gia  cd ~/img/anime
 
-map gD   cd ~/documents
-map gd   cd ~/dwnloads
+map gD   cd ~/dox
+map gd   cd ~/dwn
 
 map gs   cd ~/software
 
@@ -164,7 +164,7 @@ map gck  cd ~/.config/sxhkd
 map gcw  cd ~/.config/i3
 map gcp  cd ~/.config/polybar
 
-map gL  cd ~/literature
+map gL  cd ~/lit
 
 map gl. cd ~/.local
 map gls cd ~/.local/src
