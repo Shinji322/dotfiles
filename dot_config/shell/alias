@@ -47,7 +47,7 @@ alias locate='sudo updatedb; locate -i'
 alias rsync='rsync -arP --stats'
 
 #  ~-=| Others |=-~
-alias poweroff='printf "Are you sure you would like to poweroff? [y/N] "; read -r REPLY; [ $REPLY = "y" ] && poweroff'
+alias poweroff='printf "Are you sure you would like to poweroff? [y/N] "; read -r REPLY; [ $REPLY = "y" ] && sudo poweroff'
 
 
 #  ~-=| $HOME ~ Cleanup |=-~
@@ -64,7 +64,6 @@ alias mdanki='mdanki --config $XDG_CONFIG_HOME/mdanki/settings.json'
 alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
 alias vale='vale --config "$XDG_CONFIG_HOME/vale/config.ini"'
 alias mbsync='mbsync -c "$XDG_CONFIG_HOME/mbsync/config"'
-
 
 # Let's move faster
 alias p='sudo pacman'

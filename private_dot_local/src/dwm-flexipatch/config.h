@@ -873,7 +873,8 @@ static const char *dmenucmd[] = {
 	#endif // BAR_DMENUMATCHTOP_PATCH
 	NULL
 };
-static const char *menucmd[] = {"rofi", "-show", "drun", NULL };
+static const char *menudrun[] = {"rofi", "-show", "drun", NULL };
+static const char *menurun[] = {"rofi", "-show", "run", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 //static const char *termcmd[]  = SHCMD("")
 
@@ -906,7 +907,8 @@ static const Key keys[] = {
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
-	{ MODKEY,                       XK_r,          spawn,                  {.v = menucmd } },
+	{ MODKEY,                       XK_r,          spawn,                  {.v = menudrun } },
+	{ MODKEY|ShiftMask,             XK_r,          spawn,                  {.v = menurun } },
 	{ MODKEY,                       XK_Return,     spawn,                  SHCMD("sd") },
 	{ MODKEY|ShiftMask,             XK_Return,     spawn,                  {.v = termcmd } },
   { 0, XF86XK_AudioMute,		spawn,		SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
