@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-(sleep 1; autorandr -c) &
 (sleep 1; dwmblocks) &
 
 # Allows you to restart dwm without killing Xorg 
