@@ -24,7 +24,7 @@ alias \
 
 # ~-=| Built in Aliases |=-~
 # Colorize commands when possible.
-alias l='exa -laG --icons --color=always --group-directories-first'
+alias l='lsd -la --group-dirs=first'
 alias \
 	ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
