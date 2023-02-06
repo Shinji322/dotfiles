@@ -1,7 +1,0 @@
-#!/bin/sh
-# startup apps
-dunst &
-~/.local/bin/remaps &
-~/.local/bin/setbg ~/images/walls
-light -S 70 &
-exec ~/.local/bin/dwm.sh
