@@ -4,5 +4,6 @@
 
 require("custom.neovim").config()
 
--- Autocompiling rmarkdown documents
-vim.api.nvim_set_keymap("n", "<F5>", ":!Rscript -e \"rmarkdown::render('%:p')\"<CR>", {silent=true})
+-- Autocompiling
+vim.api.nvim_set_keymap("n", "<S-F5>", ":!compiler %", {silent=true})
+vim.api.nvim_set_keymap("n", "<F5>", ":!compiler %<CR>", {silent=true})

@@ -6,7 +6,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local _, lspconfig = pcall(require, "lspconfig")
 
 local servers = {
-  "bashls", "html", "cssls", "clangd", "pyright", "dockerls", "gdscript", "gopls", "graphql", "jsonls", "sqlls", "rust_analyzer", "tsserver", 
+  "bashls", "html", "cssls", "clangd", "pyright", "dockerls", "gdscript", "gopls", "graphql", "jsonls", "sqlls", "rust_analyzer", "tsserver", "texlab"
 }
 -- ltex-ls has to be manually configured
 -- asm-lsp has to be manually set up
