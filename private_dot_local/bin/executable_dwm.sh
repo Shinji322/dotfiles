@@ -5,5 +5,5 @@
 
 # Allows you to restart dwm without killing Xorg 
 while true; do
-  dwm >/dev/null
+  dwm 2> ~/.local/share/dwm.log
 done
