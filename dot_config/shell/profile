@@ -67,6 +67,7 @@ export NUGET_PACKAGES="${XDG_DATA_HOME:-$HOME/.local/share}/NuGetPackages"
 export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
 export SQLITE_HISTORY="${XDG_CACHE_HOME:-$HOME/.cache}/sqlite_history"
 export GDBHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/gdb_history"
+export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonrc"
 
 # mutt-wizard
 export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/mbsync/config"
