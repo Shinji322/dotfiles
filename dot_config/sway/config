@@ -3,12 +3,12 @@
 
 font 			            pango:monospace 16px 
 default_border 		        pixel 	1
-titlebar_border_thickness 	1
-gaps 			            top	10
-gaps 			            bottom	0
-gaps 			            left	5
-gaps 			            right	5
-gaps 			            inner 	10
+# titlebar_border_thickness 	1
+# gaps 			            top	5
+# gaps 			            bottom	0
+# gaps 			            left	5
+# gaps 			            right	5
+# gaps 			            inner 	5
 
 
 
@@ -27,7 +27,7 @@ set 	$down	  j
 set 	$up 	  k
 set 	$right 	l
 set 	$term 	foot
-set 	$menu 	rofi -show drun | xargs swaymsg exec --
+set 	$menu 	wofi --show drun | xargs swaymsg exec --
 
 ## Output configuration
 # Behavior
@@ -47,4 +47,5 @@ bar {
 include apps
 include hardware
 include swaybinds
+
 include /etc/sway/config.d/*

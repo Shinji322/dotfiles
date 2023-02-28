@@ -1,0 +1,67 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passtrough": false,
+  "gtk-layer-shell": true,
+  "height": 0,
+  "modules-left": [
+    "clock",
+    "custom/weather",
+    "wlr/workspaces"
+  ],
+  "modules-center": [
+    "sway/window",
+    "sway/workspaces"
+  ],
+  "modules-right": [
+    "battery",
+    "wireplumber",
+    "tray"
+  ],
+  "sway/window": {
+    "format": "{title}",
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "󰈹 $1",
+      "(.*) — vim": " $1",
+      "(.*) — zsh": " [$1]"
+    }
+  },
+  "sway/workspaces": {
+		"disable-scroll": true,
+		"format": "{name}"
+  },
+  "custom/weather" : {
+      "tooltip" : true,
+      "format" : "{}",
+      "restart-interval" : 300,
+      "exec" : "~/.local/bin/statusbar/sb-forecast"
+  },
+  "tray": {
+      "icon-size": 13,
+      "tooltip": false,
+      "spacing": 10
+  },
+  "clock": {
+      "format": "{: %R   %d/%m}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "battery": {
+    "bat": "BAT0",
+    "interval": 60,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "max-length": 25
+  },
+  "wireplumber" : {
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "on-click": "helvum",
+    "format-icons": ["", "", ""]
+  }
+}
