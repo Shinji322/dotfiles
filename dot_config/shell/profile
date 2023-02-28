@@ -10,7 +10,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # Add ~/.local/bin to PATH
 #export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:$HOME/.local/bin"
 . "$HOME/.local/share/cargo/env"
 . "$HOME/.local/share/cargo/bin"
 . "$HOME/.local/share/go/bin"    
@@ -87,7 +87,6 @@ export FZF_DEFAULT_OPTS="--margin 5% --border"
 # Less  - check `man terminfo`
 #
 export LESS=-R
-export LESSOPEN="|lesspipe.sh %s"
 
 # Blink Mode
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
