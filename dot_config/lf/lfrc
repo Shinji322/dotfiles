@@ -74,7 +74,7 @@ cmd trash ${{
   read ans
 
   [ "$ans" != "y" ] && exit
-  trash-put -- $fx
+  trash-put $fx
 }}
 cmd clear_trash %trash-empty
 cmd restore_trash ${{
@@ -99,9 +99,6 @@ cmd fzf_jump ${{
     cmd="cd"
   fi
   lf -remote "send $id $cmd \"$res\""
-}}
-cmd tmux_new_window_right %{{
-  setsid -f tmux splitw -h -p "$(bc <<< "$(tput cols) / 2")" -- lfup
 }}
 
 
@@ -129,9 +126,12 @@ map ur extract
 # ==================== Other Bindings ==================================
 map E $$EDITOR "$f"
 map R $vidir
-map Y $xclip -selection clipboard < "$f"
-map C $printf "%s" "$fx" | xclip -selection clipboard
+map Y $wl-copy < "$f"
+map C $printf "%s" "$fx" | wl-copy
 map mb $cp -ri "$f" "$f.bak"
+map ca $chezmoi add "$fx"
+map cc cd ~/.local/share/chezmoi
+map cg $lazygit
 
 
 # ==================== cd to common directories ==================================
