@@ -1,37 +1,44 @@
 # vim: filetype=swayconfig
+# environment bars
+floating_modifier 		$mod 	normal
+
+# ,,                        ,,                
+# ||   _                    ||                
+# ||  < \, \\ \\ \\/\\  _-_ ||/\\  _-_  ,._-_ 
+# ||  /-|| || || || || ||   || || || \\  ||   
+# || (( || || || || || ||   || || ||/    ||   
+# \\  \/\\ \\/\\ \\ \\ \\,/ \\ |/ \\,/   \\,  
+#                             _/              
 bindsym {
   $mod+Return exec $term
   $alt+Return exec $fterm
-  $mod+d exec $menu
+  $mod+r      exec $menu
 }
 
+
+#  |\                 ,  ,,    
+#   \\          _    ||  ||    
+#  / \\  _-_   < \, =||= ||/\\ 
+# || || || \\  /-||  ||  || || 
+# || || ||/   (( ||  ||  || || 
+#  \\/  \\,/   \/\\  \\, \\ |/ 
+#                          _/  
 bindsym {
-  $mod+Shift+q kill
-  $mod+Shift+c reload
+  $mod+Shift+c kill
+  $mod+Shift+r reload
   $mod+Shift+e exec swaynag -t warning -m 'You pressed the wrong button goof' -B 'Exit Sway' 'swaymsg exit'
+  $mod+q 	exec 	swaynag -t custom -m 'Do you wish to fully reload your Sway session?' -b 'Yes' 'swaymsg exit'
+  $mod+p 	        exec 	swaynag -t custom -m 'What action would you like to perform?' -b 'Shutdown' 'poweroff' -b 'Restart' 'poweroff --reboot'
 }
 
-bindsym {
-  $mod+Left focus left
-  $mod+Down focus down
-  $mod+Up focus up
-  $mod+Right focus right
 
-  $alt+Tab focus down
-
-  $mod+$left focus left
-  $mod+$down focus down
-  $mod+$up focus up
-  $mod+$right focus right
-}
-
-bindsym {
-  $mod+Shift+$left move left
-  $mod+Shift+$down move down
-  $mod+Shift+$up move up
-  $mod+Shift+$right move right
-}
-
+#                    ,,                                      
+# ;                  ||                 _                    
+# \\/\/\  /'\\ ,._-_ ||/\  _-_, -_-_   < \,  _-_  _-_   _-_, 
+# || | | || ||  ||   ||_< ||_.  || \\  /-|| ||   || \\ ||_.  
+# || | | || ||  ||   || |  ~ || || || (( || ||   ||/    ~ || 
+# \\/\\/ \\,/   \\,  \\,\ ,-_-  ||-'   \/\\ \\,/ \\,/  ,-_-  
+#                               |/                           
 bindsym {
   $mod+1 workspace number 1
   $mod+2 workspace number 2
@@ -43,9 +50,7 @@ bindsym {
   $mod+8 workspace number 8
   $mod+9 workspace number 9
   $mod+0 workspace number 10
-}
 
-bindsym {
   $mod+Shift+1 move container to workspace number 1
   $mod+Shift+2 move container to workspace number 2
   $mod+Shift+3 move container to workspace number 3
@@ -58,31 +63,63 @@ bindsym {
   $mod+Shift+0 move container to workspace number 10
   $mod+Tab workspace next
 
-  $mod+Shift+Right move container to workspace next
-  $mod+Shift+Left move container to workspace prev
+  $mod+$left focus left
+  $mod+$down focus down
+  $mod+$up focus up
+  $mod+$right focus right
+
+  $mod+Shift+minus move scratchpad
+  $mod+minus scratchpad show
 }
 
+# ,,                            ,        
+# ||   _                       ||        
+# ||  < \, '\\/\\  /'\\ \\ \\ =||=  _-_, 
+# ||  /-||  || ;' || || || ||  ||  ||_.  
+# || (( ||  ||/   || || || ||  ||   ~ || 
+# \\  \/\\  |/    \\,/  \\/\\  \\, ,-_-  
+#          (                             
+#           -_-                          
 bindsym {
   $mod+b splith
   $mod+v splitv
-}
-
-bindsym {
   $mod+s layout stacking
-  $mod+w layout tabbed
-  $mod+e layout toggle split
+  $mod+m layout tabbed
+  $mod+t layout toggle split
+  $mod+f fullscreen
+  $mod+Shift+s floating toggle
+  $mod+a 		focus 	parent
+  $mod+Shift+a 		focus 	child
+  $mod+space focus mode_toggle
 }
 
-bindsym $mod+f fullscreen
-bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+space focus mode_toggle
+#                 |\            
+#                  \\   '   _   
+# \\/\\/\\  _-_   / \\ \\  < \, 
+# || || || || \\ || || ||  /-|| 
+# || || || ||/   || || || (( || 
+# \\ \\ \\ \\,/   \\/  \\  \/\\ 
+bindsym --locked {
+  XF86AudioRaiseVolume   exec ~/.local/bin/ctl-volume up
+  XF86AudioLowerVolume   exec ~/.local/bin/ctl-volume down
+  XF86AudioMute          exec ~/.local/bin/ctl-volume mute
+  XF86AudioMicMute       exec ~/.local/bin/ctl-volume silent
+  XF86MonBrightnessDown  exec ~/.local/bin/ctl-light down
+  XF86MonBrightnessUp    exec ~/.local/bin/ctl-light up
+  XF86AudioPlay          exec mpc toggle || playerctl play-pause
+  XF86AudioNext          exec mpc next || playerctl next
+  XF86AudioPrev          exec mpc prev || playerctl previous
+  XF86Search             exec $menu
+}
 
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
-bindsym $mod+r mode "resize"
-
+#                 |\               
+#                  \\              
+# \\/\\/\\  /'\\  / \\  _-_   _-_, 
+# || || || || || || || || \\ ||_.  
+# || || || || || || || ||/    ~ || 
+# \\ \\ \\ \\,/   \\/  \\,/  ,-_-  
+bindsym $alt+r mode "resize"
 mode "resize" {
   bindsym {
     $right resize shrink width 100px

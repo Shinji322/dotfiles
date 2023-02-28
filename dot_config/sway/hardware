@@ -1,0 +1,14 @@
+# vim: filetype=swayconfig
+output * scale 1.5
+
+input "type:keyboard" {
+  xkb_options caps:escape
+  repeat_delay 300
+  repeat_rate 50
+}
+
+input "type:touchpad" {
+	dwt enabled
+	tap enabled
+	middle_emulation enabled
+}

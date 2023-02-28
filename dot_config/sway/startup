@@ -1,2 +1,2 @@
-exec foot --title "ScratchTerminal" 
-exec dunst
+# vim: filetype=swayconfig
+exec foot --title "scratch" 
