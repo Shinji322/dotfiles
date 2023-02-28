@@ -47,5 +47,6 @@ bar {
 include apps
 include hardware
 include swaybinds
+include startup
 
 include /etc/sway/config.d/*

@@ -1,2 +1,6 @@
 # vim: filetype=swayconfig
-exec foot --title "scratch" 
+exec dunst &
+exec mpd &
+exec pipewire &
+exec pipewire-pulse &
+exec light -S 20

@@ -1,4 +1,5 @@
 # vim: filetype=swayconfig
+exec ~/.local/bin/setbg
 output * scale 1.5
 
 input "type:keyboard" {
