@@ -1,0 +1,2 @@
+exec foot --title "ScratchTerminal" 
+exec dunst
