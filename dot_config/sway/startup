@@ -3,4 +3,5 @@ exec dunst &
 exec mpd &
 exec pipewire &
 exec pipewire-pulse &
-exec light -S 20
+exec lxpolkit  &
+exec light -S 20 &

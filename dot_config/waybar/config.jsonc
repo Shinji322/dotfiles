@@ -9,7 +9,7 @@
   "modules-left": [
     "clock",
     "custom/weather",
-    "wlr/workspaces"
+    "mpd"
   ],
   "modules-center": [
     "sway/window",
@@ -22,6 +22,7 @@
   ],
   "sway/window": {
     "format": "{title}",
+    "max-length": 50,
     "rewrite": {
       "(.*) — Mozilla Firefox": "󰈹 $1",
       "(.*) — vim": " $1",
@@ -61,7 +62,37 @@
   "wireplumber" : {
     "format": "{icon} {volume}%",
     "format-muted": "",
-    "on-click": "helvum",
+    "on-click": "pavucontrol",
     "format-icons": ["", "", ""]
+  },
+  "custom/tasks" : {
+    "tooltip": true,
+    "format" : "{}",
+    "restart-interval" : 300
+  },
+  "mpd": {
+      "format": "{stateIcon}",
+      "format-stopped": "{stateIcon} {title}",
+      "interval": 10,
+      "max-length": 20,
+      "consume-icons": {
+          "on": " " // Icon shows only when "consume" is on
+      },
+      "random-icons": {
+          "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+          "on": " "
+      },
+      "repeat-icons": {
+          "on": " "
+      },
+      "single-icons": {
+          "on": "1 "
+      },
+      "state-icons": {
+          "paused": "",
+          "playing": ""
+      },
+      "tooltip-format": "{title}",
+      "tooltip-format-disconnected": "{title} (disconnected)"
   }
 }

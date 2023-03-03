@@ -1,14 +1,14 @@
-/* * { */
-/*     border: none; */
-/*     border-radius: 0; */
-/*     font-family: Linux Libertine, monospace; */
-/*     font-weight: bold; */
-/*     font-size: 14px; */
-/*     min-height: 0; */
-/* } */
+* {
+  border: none;
+  border-radius: 0;
+  font-family: monospace;
+  /* font-weight: bold; */
+  font-size: 14px;
+  min-height: 0;
+}
 /**/
 window#waybar {
-  background: rgba(21, 18, 27, 1);
+  background: rgba(21, 18, 27, 0.85);
   /* Complete transparency */
   /* background: rgba(21, 18, 27, 0); */
   color: #cdd6f4;
@@ -34,7 +34,8 @@ window#waybar {
 /**/
 #workspaces button.focused {
   color: #a6adc8;
-  background: #eba0ac;
+  /* background: #eba0ac; */
+  background: #c1848e;
   border-radius: 10px;
 }
 /**/

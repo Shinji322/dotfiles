@@ -58,12 +58,10 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+
 bindkey -s '^o' '^ulfcd\n'
-
 bindkey -s '^a' '^ubc -lq\n'
-
 bindkey -s '^f' '^ucd "$(dirname "$(fzf)")"\n'
-
 bindkey '^[[P' delete-char
 
 # Edit line in vim with ctrl-e:
@@ -79,3 +77,8 @@ eval "$(starship init zsh)"
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+source $ZDOTDIR/plugins/* 2>/dev/null
+
+if [ "$(tty)" = "/dev/tty1" ]; then 
+  ~/.local/bin/swaylaunch
+fi

@@ -101,16 +101,18 @@ bindsym {
 # || || || ||/   || || || (( || 
 # \\ \\ \\ \\,/   \\/  \\  \/\\ 
 bindsym --locked {
-  XF86AudioRaiseVolume   exec ~/.local/bin/ctl-volume up
-  XF86AudioLowerVolume   exec ~/.local/bin/ctl-volume down
-  XF86AudioMute          exec ~/.local/bin/ctl-volume mute
-  XF86AudioMicMute       exec ~/.local/bin/ctl-volume silent
-  XF86MonBrightnessDown  exec ~/.local/bin/ctl-light down
-  XF86MonBrightnessUp    exec ~/.local/bin/ctl-light up
-  XF86AudioPlay          exec mpc toggle || playerctl play-pause
-  XF86AudioNext          exec mpc next || playerctl next
-  XF86AudioPrev          exec mpc prev || playerctl previous
-  XF86Search             exec $menu
+  XF86AudioRaiseVolume         exec ~/.local/bin/ctl-volume up
+  Shift+XF86AudioRaiseVolume   exec ~/.local/bin/ctl-volume up5
+  XF86AudioLowerVolume         exec ~/.local/bin/ctl-volume down
+  Shift+XF86AudioLowerVolume   exec ~/.local/bin/ctl-volume down5
+  XF86AudioMute                exec ~/.local/bin/ctl-volume mute
+  XF86AudioMicMute             exec ~/.local/bin/ctl-volume silent
+  XF86MonBrightnessDown        exec ~/.local/bin/ctl-light down
+  XF86MonBrightnessUp          exec ~/.local/bin/ctl-light up
+  XF86AudioPlay                exec mpc toggle || playerctl play-pause
+  XF86AudioNext                exec mpc next || playerctl next
+  XF86AudioPrev                exec mpc prev || playerctl previous
+  XF86Search                   exec $menu
 }
 
 #                 |\               
