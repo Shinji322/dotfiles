@@ -2,15 +2,23 @@
 # called like so:
 # ctl-volume (up|down|mute|silent)
 
-up() {
-  pactl set-sink-volume @DEFAULT_SINK@ +5%
+changevolume() {
+  pactl set-sink-volume @DEFAULT_SINK@ $1%
   volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d{1,3}%' | tail -1)
   dunstify -a "VOLUME" "$volume" -h int:value:"$volume" -i display-volume-symbolic -r 2594 -u normal
 }
+
+up() {
+  changevolume "+1"
+}
 down() {
-  pactl set-sink-volume @DEFAULT_SINK@ -5%
-  volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d{1,3}%' | tail -1)
-  dunstify -a "VOLUME" "$volume" -h int:value:"$volume" -i display-volume-symbolic -r 2594 -u normal
+  changevolume "-1"
+}
+up5() {
+  changevolume "+5"
+}
+down5() {
+  changevolume "-5"
 }
 mute() {
   pactl set-sink-mute @DEFAULT_SINK@ toggle
