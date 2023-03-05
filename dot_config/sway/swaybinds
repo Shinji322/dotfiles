@@ -10,10 +10,19 @@ floating_modifier 		$mod 	normal
 # \\  \/\\ \\/\\ \\ \\ \\,/ \\ |/ \\,/   \\,  
 #                             _/              
 bindsym {
-  $mod+Return exec $term
-  $alt+Return exec $fterm
-  $mod+a      exec $term -e ncmpcpp
-  $mod+r      exec $menu
+  $mod+Return      exec $term
+  $alt+Return      exec $fterm
+
+  ctrl+$alt+a      exec $term -e ncmpcpp
+  ctrl+$alt+d      exec $term -e nvim
+  ctrl+$alt+f      exec $term -e lf
+  ctrl+$alt+w      exec firefox
+  ctrl+$alt+c      exec webcord-launch
+
+  $mod+p           exec grim -t jpeg -g "$(slurp)" ~/img/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && ls -t | head -1 | wl-copy
+  $mod+shift+p     exec grim -t jpeg  ~/img/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && ls -t | head -1 | wl-copy
+
+  $mod+r           exec $menu
 }
 
 
@@ -25,11 +34,11 @@ bindsym {
 #  \\/  \\,/   \/\\  \\, \\ |/ 
 #                          _/  
 bindsym {
-  $mod+Shift+c kill
-  $mod+Shift+r reload
-  $mod+Shift+e exec swaynag -t warning -m 'You pressed the wrong button goof' -B 'Exit Sway' 'swaymsg exit'
-  $mod+q 	exec 	swaynag -t custom -m 'Do you wish to fully reload your Sway session?' -b 'Yes' 'swaymsg exit'
-  $mod+p 	        exec 	swaynag -t custom -m 'What action would you like to perform?' -b 'Shutdown' 'poweroff' -b 'Restart' 'poweroff --reboot'
+  $mod+Shift+c    kill
+  $mod+Shift+r    reload
+  $mod+Shift+e    exec swaynag -t warning -m 'You pressed the wrong button goof' -B 'Exit Sway' 'swaymsg exit'
+  $mod+Shift+q 	  exec swaynag -t custom -m 'Do you wish to fully reload your Sway session?' -b 'Yes' 'swaymsg exit'
+  $mod+Shift+d 	  exec swaynag -t custom -m 'What action would you like to perform?' -b 'Shutdown' 'poweroff' -b 'Restart' 'poweroff --reboot'
 }
 
 

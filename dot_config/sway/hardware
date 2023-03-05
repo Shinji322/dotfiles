@@ -2,6 +2,10 @@
 exec ~/.local/bin/setbg
 output * scale 1.5
 
+set $laptop eDP-2
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
 input "type:keyboard" {
   xkb_options caps:escape
   repeat_delay 300

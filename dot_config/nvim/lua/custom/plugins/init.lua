@@ -15,4 +15,7 @@ return {
       require "custom.plugins.null-ls"
     end,
   },
+  ["folke/which-key.nvim"] = {
+    disable = false
+  },
 }
