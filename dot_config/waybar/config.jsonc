@@ -7,15 +7,15 @@
   "gtk-layer-shell": true,
   "height": 0,
   "modules-left": [
-    "clock",
-    "custom/weather",
-    "mpd"
-  ],
-  "modules-center": [
-    "sway/window",
     "sway/workspaces"
   ],
+  "modules-center": [
+    "sway/window"
+  ],
   "modules-right": [
+    "custom/tasks",
+    "mpd",
+    "clock",
     "battery",
     "wireplumber",
     "tray"
@@ -66,9 +66,9 @@
     "format-icons": ["", "", ""]
   },
   "custom/tasks" : {
-    "tooltip": true,
-    "format" : "{}",
-    "restart-interval" : 300
+    "format" : " {}",
+    "restart-interval" : 10,
+    "exec" : "~/.local/bin/statusbar/sb-tasks"
   },
   "mpd": {
       "format": "{stateIcon}",

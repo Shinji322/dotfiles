@@ -1,0 +1,3 @@
+[submodule "dot_config/zsh/plugins/pure"]
+	path = dot_config/zsh/plugins/pure
+	url = https://github.com/sindresorhus/pure

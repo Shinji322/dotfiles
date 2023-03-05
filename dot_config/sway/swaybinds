@@ -12,6 +12,7 @@ floating_modifier 		$mod 	normal
 bindsym {
   $mod+Return exec $term
   $alt+Return exec $fterm
+  $mod+a      exec $term -e ncmpcpp
   $mod+r      exec $menu
 }
 
@@ -83,13 +84,12 @@ bindsym {
 bindsym {
   $mod+b splith
   $mod+v splitv
-  $mod+s layout stacking
-  $mod+m layout tabbed
+  $mod+m layout stacking
   $mod+t layout toggle split
   $mod+f fullscreen
-  $mod+Shift+s floating toggle
-  $mod+a 		focus 	parent
-  $mod+Shift+a 		focus 	child
+  $mod+s floating toggle
+  # $mod+a 		focus 	parent
+  # $mod+Shift+a 		focus 	child
   $mod+space focus mode_toggle
 }
 
