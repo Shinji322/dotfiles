@@ -19,7 +19,7 @@ set autoquit on
 cmd open ${{
   case $(file --mime-type "$(readlink -f $f)" -b) in
     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
-    application/vnd.oasis.opendocument.*) libreoffice $fx ;;
+    application/vnd.oasis.opendocument.*|application/vnd.openxmlformats*) setsid -f libreoffice $fx >/dev/null 2>&1 ;;
     image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
           text/*|application/json|inode/x-empty) $EDITOR $fx;;
     image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
@@ -33,7 +33,7 @@ cmd open ${{
       ;;
     audio/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
     video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-    application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+    application/pdf|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
     application/pgp-encrypted) $EDITOR $fx ;;
     *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
   esac
