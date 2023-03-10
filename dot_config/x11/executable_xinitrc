@@ -14,4 +14,4 @@ else
 	. "$HOME/.xprofile"
 fi
 
-ssh-agent ~/.local/bin/dwm.sh
+dbus-run-session ~/.local/bin/dwm.sh
