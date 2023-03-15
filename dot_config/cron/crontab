@@ -1,2 +1,0 @@
-*/10 * * * * env DBUS_SESSION_BUS_ADDRESS=your-address /usr/bin/threadwatcher scan
-Optional dependencies for threadwatcher
