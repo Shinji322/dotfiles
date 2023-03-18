@@ -21,7 +21,7 @@ cmd open ${{
     application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
     application/vnd.oasis.opendocument.*|application/vnd.openxmlformats*) setsid -f libreoffice $fx >/dev/null 2>&1 ;;
     image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-          text/*|application/json|inode/x-empty) $EDITOR $fx;;
+    text/*|application/json|inode/x-empty) $EDITOR $fx;;
     image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
     image/svg+xml) display -- $f ;;
     image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
@@ -46,15 +46,15 @@ cmd paste &{{
   shift
   case "$mode" in
     copy)
-      rsync -av --progress -- "$@" . &!
+      rsync -av --progress -- "$@" .
       ;;
-    move) 
-      mv -i -n -- "$@" . &!
+    movetsp ) 
+      mv -i -n -- "$@" .
       ;;
   esac
   rm ~/.local/share/lf/files
   lf -remote "send clear"
-	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
+	tsp notify-send "🚚 File(s) moved." "File(s) moved to $dest."
 }}
 cmd extract ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold
@@ -116,7 +116,7 @@ cmap <up> cmd-history-prev
 cmap <down> cmd-history-next
 map D trash
 map U restore_trash
-map P paste
+map p paste
 map bg setwallpaper
 map dr $dragon-drop "$f"
 map f fzf_jump
@@ -126,8 +126,8 @@ map ur extract
 # ==================== Other Bindings ==================================
 map E $$EDITOR "$f"
 map R $vidir
-map Y $wl-copy < "$f"
-map C $printf "%s" "$fx" | wl-copy
+map Y $xclip -sel c < "$f"
+map C $printf "%s" "$fx" | xclip -sel c
 map mb $cp -ri "$f" "$f.bak"
 map ca $chezmoi add "$fx"
 map cc cd ~/.local/share/chezmoi
