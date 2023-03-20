@@ -1,51 +1,9 @@
 #!/bin/bash -x
 # handles downloading any link thrown to it
 # either uses ripgrep or python
-ytdl='yt-dlp -4vcx -N 5 --embed-metadata --sponsorblock-mark all'
+ytdl='tsp yt-dlp -4vcx -N 5 --embed-metadata --sponsorblock-mark all'
+rootdir="$HOME/arc/dl"
 repos="$HOME/.local/repos"
-
-usage() {
-  echo "This is a simple script that handles downloading any link thrown at it.
-It will use the appropriate downloader if it is installed and query you if it isn't present.
-"
-}
-
-menu() {
-  # -t 0 means running from terminal
-  if [ -t 0 && command -v fzf ]; then 
-    menu="fzf"
-  elif [ command -v bmenu ]; then 
-    menu="bemenu"
-  elif [ command -v dmenu ]; then 
-    menu="dmenu"
-  elif [ command -v rofi ]; then
-    menu="rofi -show drun"
-  fi
-  $menu $@
-}
-
-err() {
-  for msg in $@; do
-    echo "\033[0;31m$msg\033[0m"
-  done
-  exit 1
-}
-
-ggrep() {
-  # Usage:
-  #   $1 = group
-  #   $2 = pattern
-  #   $3 = string
-  if [ command -v rg ]; then 
-    # e.g. echo "foobar" | rg -o -r '$1' "foo(bar)"
-    #   bar
-    rg -o -r "\$$1" "$2"  "$3"
-  elif [ command -v python ]; then
-    python <<< "import re; print(re.search('$2', '$3').group($1))"
-  else
-    err "Couldn't find suitable regex parser" "This script depends on using regex groups which isn't available in gnu grep" "Please install ripgrep or python"
-  fi
-}
 
 #                    _         _          
 #  _   _  ___  _   _| |_ _   _| |__   ___ 
@@ -56,7 +14,7 @@ ggrep() {
 ytm() {
   # download unique music
   link="https://youtube.com/$(basename $1)"
-  $ytdl --check-formats --format "(bestaudio[acodec^=opus]/bestaudio)/best" "$link"
+  $ytdl --write-description --check-formats --format "(bestaudio[acodec^=opus]/bestaudio)/best" "$link"
 }
 ytv() {
   # download unique video
@@ -74,15 +32,21 @@ ytva() {
   link="https://youtube.com/$(basename $1)"
   $ytdl --write-info-json --check-formats --merge-output-format "mkv" --get-comments --output "%(title)s - %(uploader)s - %(upload_date)s/%(title)s - %(uploader)s - %(upload_date)s [%(id)s].%(ext)s" "$link"
 }
+ytp() {
+  link="https://youtube.com/$(basename $1)"
+  $ytdl --check-formats --format '(bestaudio[acodec^=opus]/bestaudio)/best' --output '%(playlist)s/%(title)s.%(ext)s' "$link"
+}
 ythandle() {
+  icon=""
   if [ -n "$audio" ]; then
     ytm "$1"
   elif [ -n "$video" ]; then  
     ytv "$1"
   else
-    option="$(printf '%s\n%s\n%s\n%s\n' 'Channel' 'Music' 'Video' 'Video (archive)' | fzf)"
+    option="$(printf '%s\n%s\n%s\n%s\n%s\n' 'Channel' 'Music' 'Music Playlist' 'Video' 'Video (archive)' | fzf)"
     case "$option" in
       'Channel') ytca "$1" ;;
+      'Music Playlist') ytp "$1";;
       'Music') ytm "$1" ;;
       'Video') ytv "$1" ;;
       'Video (archive)') ytva "$1" ;;
@@ -95,8 +59,7 @@ main() {
   while test $# -gt 0; do
     case "$1" in
       -l|--link)
-        # grep -Eq '.*(youtube.com|yewtu.be|invidious.*|vid.puffyan.us)\/(.*)' && ythandle "$1"
-        youtube=true
+        grep -Eq '.*(youtube).*' <<< "$2"  && youtube=true
         link="$2"
         shift 2
         ;;
@@ -108,23 +71,19 @@ main() {
         video=true
         shift 1
         ;;
-      -d|--dest)
-        dest="$2"
-        shift 2
-        ;;
       *)
         usage; exit 1
         ;;
     esac
   done
 
-  if [ -n "$youtube" ]; then
+  if [ -n "$youtube" ]; then 
     ythandle "$link"
+  else
+    tsp gallery-dl "$link"
   fi
-
-  if [ -n "$dest" ]; then
-    mv -iv "$(ls -t | head -1)" "$dest"
-  fi
+  tsp -d notify-send "$icon Finished downloading $link"
 } 
+
 
 main $@ >~/.cache/dl.log
