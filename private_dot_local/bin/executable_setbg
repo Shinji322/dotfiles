@@ -6,16 +6,18 @@
 
 walls="$HOME/images/walls"
 bgloc="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+# if the size of the image is smaller than this, tile the wallpaper
+tilesize=300
 
 trueloc="$(readlink -f "$1")" &&
 case "$(file --mime-type -b "$trueloc")" in
 	image/* ) 
     ln -sf "$(readlink -f "$1")" "$bgloc" 
-    notify-send -i "$bgloc" "Changing wallpaper..." 
+    notify-send -t 1000 -i "$bgloc" "Changing wallpaper..." 
     ;;
 	inode/directory ) 
     ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc";
-    notify-send -i "$bgloc" "Random Wallpaper chosen." 
+    notify-send -t 1000 -i "$bgloc" "Random Wallpaper chosen." 
     ;;
 	*) notify-send "Error" "Not a valid image." ; exit 1;;
 esac
@@ -26,7 +28,10 @@ if command -v wal >/dev/null 2>&1 ; then
 fi
 
 if [ -z "$WAYLAND_DISPLAY" ]; then
-  xwallpaper --zoom "$bgloc"
+  mode='zoom'
+  read w h <<< `identify -format '%w %h' "$bgloc"`
+  [ "$w" -lt "$tilesize" ] && [ "$h" -lt "$tilesize" ] && mode='tile'
+  xwallpaper --$mode "$bgloc"
 else
   pidof -s sway >/dev/null 2>&1 && {
     pidof -s swaybg && pkill swaybg

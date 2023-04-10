@@ -8,7 +8,7 @@ set filesep "\n"  # default already
 set scrolloff 10
 set period 1
 set hidden true
-set drawbox true
+#set drawbox true
 set icons true
 set ignorecase true
 set cleaner '~/.config/lf/cleaner'
@@ -48,13 +48,13 @@ cmd paste &{{
     copy)
       rsync -av --progress -- "$@" .
       ;;
-    movetsp ) 
+    move) 
       mv -i -n -- "$@" .
       ;;
   esac
   rm ~/.local/share/lf/files
   lf -remote "send clear"
-	tsp notify-send "🚚 File(s) moved." "File(s) moved to $dest."
+	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
 }}
 cmd extract ${{
 	clear; tput cup $(($(tput lines)/3)); tput bold

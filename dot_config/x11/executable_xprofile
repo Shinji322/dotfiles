@@ -9,7 +9,7 @@ xrandr --dpi 102		# Set DPI. User may want to use a larger number for larger scr
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 light -S 20 &
 
-autostart="mpd xcompmgr dunst unclutter pipewire lxpolkit remapd dwmblocks"
+autostart="mpd xcompmgr dunst unclutter pipewire lxpolkit remapd"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &

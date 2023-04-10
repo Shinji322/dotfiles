@@ -1,14 +1,20 @@
--- Just an example, supposed to be placed in /lua/custom/
+---@type ChadrcConfig
 local M = {}
 
--- make sure you maintain the structure of `core/default_config.lua` here,
+-- Path to overriding theme and highlights files
+local highlights = require "custom.highlights"
+
 M.ui = {
-  theme = "gruvchad",
-  theme_toggle = { "gruvchad", "onedark" },
-  transparency = true,
+  theme = "onedark",
+  theme_toggle = { "onedark", "one_light" },
+
+  hl_override = highlights.override,
+  hl_add = highlights.add,
 }
 
-M.plugins = require "custom.plugins"
+M.plugins = "custom.plugins"
+
+-- check core.mappings for table structure
 M.mappings = require "custom.mappings"
 
 return M
