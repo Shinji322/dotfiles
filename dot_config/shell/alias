@@ -6,31 +6,31 @@
 # Use $XINITRC variable if file exists.
 [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
-for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
-	alias $command="sudo $command"
-done; unset command
-
+for command in mount umount sv pacman updatedb su shutdown poweroff reboot; do
+  alias $command="sudo $command"
+done
+unset command
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -vI" \
-	bc="bc -ql" \
-	mkd="mkdir -pv" \
-	yt="yt-dlp --embed-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
-	ffmpeg="ffmpeg -hide_banner"
+  cp="cp -iv" \
+  mv="mv -iv" \
+  rm="rm -vI" \
+  bc="bc -ql" \
+  mkd="mkdir -pv" \
+  yt="yt-dlp --embed-metadata -i" \
+  yta="yt -x -f bestaudio/best" \
+  ffmpeg="ffmpeg -hide_banner"
 
 # ~-=| Built in Aliases |=-~
 # Colorize commands when possible.
 alias l='lsd -la --group-dirs=first'
 alias \
-	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi" \
-	ip="ip -color=auto"
+  ls="ls -hN --color=auto --group-directories-first" \
+  grep="grep --color=auto" \
+  diff="diff --color=auto" \
+  ccat="highlight --out-format=ansi" \
+  ip="ip -color=auto"
 
 # ~-=| Streamlining basic commands |=-~
 alias rm='trash'
@@ -38,7 +38,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias du='du -h'
 alias df='df -h'
-alias grep='grep -i --color=auto'
 
 # ~-=| Shortcuts |=-~
 alias cat='bat'
@@ -48,7 +47,6 @@ alias rsync='rsync -arP --stats'
 
 #  ~-=| Others |=-~
 alias poweroff='printf "Are you sure you would like to poweroff? [y/N] "; read -r REPLY; [ $REPLY = "y" ] && sudo poweroff'
-
 
 #  ~-=| $HOME ~ Cleanup |=-~
 alias newsboat='newsboat --url-file="$XDG_CONFIG_HOME/newsboat/urls" --config-file="$XDG_CONFIG_HOME/newsboat/config" --cache-file="$XDG_CACHE_HOME/newsboat/cache"'
@@ -71,19 +69,20 @@ alias y='yay'
 alias f='lfcd'
 alias e='$EDITOR'
 alias v='$EDITOR'
-# Let zsh get the entire history 
+# Let zsh get the entire history
 alias hist='history 1'
 alias iost='iostat -sxmhtc --dec=0'
 alias ifconfig='ip a'
 
 # Git commands
-alias g='lazygit'
+alias g='git'
+alias lzg='lazygit'
+alias lzd='lazydocker'
 # alias s='sudo systemctl'
 # alias gim='git commit -m'
 # alias gc='git clone'
 # alias gia='git add'
 # alias gis='git status'
-
 
 # Aliasing core utils
 # This is a bad idea but ehhh
@@ -91,3 +90,4 @@ alias cd='z'
 alias du='dust'
 alias curl='curl --progress-bar'
 alias fil='file --dereference --brief --mime-type'
+alias sovn='source venv/bin/activate'

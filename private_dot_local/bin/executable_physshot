@@ -1,0 +1,6 @@
+#!/bin/bash
+output="$(date '+%y%m%d-%H%M-%S').png"
+stat="$HOME/dox/rit/Spring22/PHYS-211/assets"
+maim -s "$stat/$output"
+echo -n "assets/$output" | xclip -sel c
+

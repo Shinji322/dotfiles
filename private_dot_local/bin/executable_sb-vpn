@@ -1,0 +1,11 @@
+#!/bin/sh
+status="VPN: "
+mullvad status | grep -Eq 'Connected' && status="VPN: "
+
+case $BLOCK_BUTTON in
+1) setsid -f mullvad-vpn ;;
+4) mullvad connect && kill -55 "$(pidof dwmblocks)" ;;
+5) mullvad disconnect && kill -55 "$(pidof dwmblocks)" ;;
+esac
+
+echo "$status"

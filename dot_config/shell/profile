@@ -13,20 +13,19 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export PATH="$PATH:$HOME/.local/bin"
 . "$HOME/.local/share/cargo/env"
 . "$HOME/.local/share/cargo/bin"
-. "$HOME/.local/share/go/bin"    
+. "$HOME/.local/share/go/bin"
 # export PATH="$PATH:$HOME/.local/share/cargo/bin"
 # export PATH="$PATH:$HOME/.local/share/go/bin"
-# . "${XDG_DATA_HOME:-$HOME/.local/share}/npm/bin"
+# . "$XDG_DATA_HOME/npm/bin"
 # . "${APPIMAGE_DIR}"
 # . "${BINARIES_DIR}"
-# . "${XDG_DATA_HOME:-$HOME/.local/share}/nvim/lsp_servers"
+# . "$XDG_DATA_HOME/nvim/lsp_servers"
 
 # stuff
 unsetopt PROMPT_SP
 
-
 # Default Programs (most are just for use in scripts)
-export TERMINAL="alacritty"
+export TERMINAL="st"
 export EDITOR="nvim"
 export FILE="$HOME/.local/bin/lfub"
 export READER="zathura"
@@ -41,46 +40,47 @@ export BROWSER="firefox"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # For NPM
-export NODE_PATH="${XDG_DATA_HOME:-$HOME/.local/share}/npm/lib/node_modules"
+export NODE_PATH="$XDG_DATA_HOME/npm/lib/node_modules"
 
 # ~/ Cleanup
-export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
 
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-export GTK_THEME="$(grep 'gtk-theme-name' "${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini" | sed 's/.*s*=s*//')" 
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export GTK_THEME="$(grep 'gtk-theme-name' "$XDG_CONFIG_HOME/gtk-3.0/settings.ini" | sed 's/.*s*=s*//')"
 export LESSHISTFILE="-"
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
-export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
-export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
-export TERMINFO="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo"
-export TERMINFO_DIRS="${XDG_DATA_HOME:-$HOME/.local/share}/terminfo:/usr/share/terminfo"
-export FFMPEG_DATADIR="${XDG_CONFIG_HOME:-$HOME/.config}/ffmpeg"
-export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
-export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
-export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
-export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export NUGET_PACKAGES="${XDG_DATA_HOME:-$HOME/.local/share}/NuGetPackages"
-export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export GOPATH="$XDG_DATA_HOME/go"
+export GOMODCACHE="${XDG_CACHE_HOME:-$HOME/.local/share}/go"
+export NUGET_PACKAGES="$XDG_DATA_HOME/NuGetPackages"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export SQLITE_HISTORY="${XDG_CACHE_HOME:-$HOME/.cache}/sqlite_history"
 export GDBHISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/gdb_history"
-export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonrc"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export QT_QPA_PLATFORMTHEME="gtk2"
 
 # mutt-wizard
-export MBSYNCRC="${XDG_CONFIG_HOME:-$HOME/.config}/mbsync/config"
-export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch/config"
+export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
 
-export ANROID_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/android"
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-$HOME/.config}/java"
-
+export ANROID_HOME="$XDG_DATA_HOME/android"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Doesn't seem to work but let's try it anyway
-export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
-export CUDA_CACHE_PATH="${XDG_DATA_HOME:-$HOME/.local/share}/nv"
-
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export CUDA_CACHE_PATH="$XDG_DATA_HOME/nv"
 
 # Program options
 export FZF_DEFAULT_OPTS="--margin 5% --border"
@@ -89,19 +89,40 @@ export FZF_DEFAULT_OPTS="--margin 5% --border"
 export LESS=-R
 
 # Blink Mode
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
+export LESS_TERMCAP_mb=$(
+  tput bold
+  tput setaf 2
+) # green
 # Start bold
-export LESS_TERMCAP_md=$(tput bold; tput setaf 2) # green
+export LESS_TERMCAP_md=$(
+  tput bold
+  tput setaf 2
+) # green
 # Start stand out
-export LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 3) # yellow
+export LESS_TERMCAP_so=$(
+  tput bold
+  tput rev
+  tput setaf 3
+) # yellow
 # End stand out
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_se=$(
+  tput rmso
+  tput sgr0
+)
 # Start underline
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 1) # red
+export LESS_TERMCAP_us=$(
+  tput smul
+  tput bold
+  tput setaf 1
+) # red
 # End underline
-export LESS_TERMCAP_ue=$(tput rmul; tput bold; tput sgr0)
+export LESS_TERMCAP_ue=$(
+  tput rmul
+  tput bold
+  tput sgr0
+)
 # End bold, blinking, standout, underline
 export LESS_TERMCAP_me=$(tput sgr0)
 
 # Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/ttymaps.kmap 2>/dev/null
+sudo -n loadkeys $XDG_DATA_HOME/ttymaps.kmap 2>/dev/null

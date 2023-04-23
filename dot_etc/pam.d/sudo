@@ -1,0 +1,5 @@
+#%PAM-1.0
+auth sufficient pam_u2f.so origin=pam://gensokyo appid=pam://gensokyo authfile=/etc/u2f_mappings cue
+auth		include		system-auth
+account		include		system-auth
+session		include		system-auth

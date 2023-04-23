@@ -1,0 +1,11 @@
+#!/bin/bash
+link='https://pikopuyo.bigcartel.com/'
+str='<br>due to the extremely high volume of orders, pikopuyo will be closed until all outstanding orders are processed. thank you for your understanding and patience!</p>'
+output="$(grep "$str" <<<"$(curl $link)")"
+
+if [ -n "$output" ]; then
+  notify-send "No umineko plushies today..."
+else
+  notify-send "YO! Umineko plushies NOW!"
+  echo "go here: $link" >"$HOME/YOU_CAN_BUY_UMINEKO_PLUSHIES_NOW"
+fi
