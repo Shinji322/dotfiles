@@ -13,7 +13,7 @@ set icons true
 set ignorecase true
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
-set autoquit on
+set autoquit true
 
 # ==================== Commands ==========================================
 cmd open ${{
@@ -136,20 +136,18 @@ map cg $lazygit
 
 # ==================== cd to common directories ==================================
 map gtr  cd ~/.local/share/Trash/files
-map gm   cd /run/media/mokou
+map gm   cd /run/media/patchouli
 
-map gv.  cd ~/vid
-map gva  cd ~/vid/anime
+map gv.  cd ~/vids
+map gva  cd ~/vids/anime
 
-map gi.  cd ~/img
-map gis  cd ~/img/screenshots
-map giw  cd ~/img/walls
-map gia  cd ~/img/anime
+map gi.  cd ~/imgs
+map gis  cd ~/imgs/screenshots
+map giw  cd ~/imgs/walls
+map gia  cd ~/imgs/anime
 
-map gD   cd ~/dox
-map gd   cd ~/dwn
-
-map gs   cd ~/software
+map gD   cd ~/docs
+map gd   cd ~/dwnl
 
 map gC   cd ~/.cache
 map gc.  cd ~/.config
@@ -163,7 +161,7 @@ map gck  cd ~/.config/sxhkd
 map gcw  cd ~/.config/i3
 map gcp  cd ~/.config/polybar
 
-map gL  cd ~/lit
+map gL  cd ~/litt
 
 map gl. cd ~/.local
 map gls cd ~/.local/src
