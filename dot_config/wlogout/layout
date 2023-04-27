@@ -1,0 +1,18 @@
+{
+    "label" : "lock",
+    "action" : "~/.local/bin/lock",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+{
+    "label" : "shutdown",
+    "action" : "sudo poweroff",
+    "text" : "Shutdown",
+    "keybind" : "s"
+}
+{
+    "label" : "reboot",
+    "action" : "sudo reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}

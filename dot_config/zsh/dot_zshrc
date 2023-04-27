@@ -73,12 +73,17 @@ bindkey -M visual '^[[P' vi-delete
 
 
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+# Pure
+PURE_PROMPT_SYMBOL="󰘧"
+fpath+=($ZDOTDIR/plugins/pure)
+autoload -U promptinit; promptinit
+prompt pure
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 source $ZDOTDIR/plugins/* 2>/dev/null
 
 if [ "$(tty)" = "/dev/tty1" ]; then 
-  ~/.local/bin/swaylaunch
+  startx "$XINITRC"
+  # ~/.local/bin/swaylaunch
 fi
