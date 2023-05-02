@@ -1,2 +1,3 @@
 system:
-  game_path: ~/gam/lutris
+  game_path: ~/game/lutris
+  terminal_app: /usr/local/bin/st

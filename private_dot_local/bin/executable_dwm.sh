@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-#(sleep 1; dwmblocks) &
-(command -v autorandr && autorandr -c && arpid=$!) & # automatically set resolution and stuff
+(
+  command -v autorandr && autorandr -c
+  arpid=$!
+) &
 (
   [ -n "$arpid" ] && wait "$arpid"
   setbg

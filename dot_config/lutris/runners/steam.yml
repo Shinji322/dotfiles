@@ -1,0 +1,4 @@
+steam:
+  args: ''
+  runner_executable: /home/patchouli/.local/bin/games/steam
+system: {}
