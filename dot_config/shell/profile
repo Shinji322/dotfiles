@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148,SC2155
 # vim: filetype=sh
 
 # XDG Base directories
@@ -9,17 +10,11 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # export DISPLAY=":0"
 
 # Add ~/.local/bin to PATH
-#export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
-export PATH="$PATH:$HOME/.local/bin"
-. "$HOME/.local/share/cargo/env"
-. "$HOME/.local/share/cargo/bin"
-. "$HOME/.local/share/go/bin"
-# export PATH="$PATH:$HOME/.local/share/cargo/bin"
-# export PATH="$PATH:$HOME/.local/share/go/bin"
-# . "$XDG_DATA_HOME/npm/bin"
-# . "${APPIMAGE_DIR}"
-# . "${BINARIES_DIR}"
-# . "$XDG_DATA_HOME/nvim/lsp_servers"
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+#export PATH="$PATH:$HOME/.local/bin"
+#. "$HOME/.local/share/cargo/env"
+#. "$HOME/.local/share/cargo/bin"
+#. "$HOME/.local/share/go/bin"
 
 # stuff
 unsetopt PROMPT_SP
@@ -125,4 +120,4 @@ export LESS_TERMCAP_ue=$(
 export LESS_TERMCAP_me=$(tput sgr0)
 
 # Switch escape and caps if tty and no passwd required:
-sudo -n loadkeys $XDG_DATA_HOME/ttymaps.kmap 2>/dev/null
+sudo -n loadkeys "$XDG_DATA_HOME/ttymaps.kmap" 2>/dev/null

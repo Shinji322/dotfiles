@@ -1,0 +1,11 @@
+#!/bin/sh
+BMDIR="$HOME/.local/share/bookmarks"
+! [ -d "$BMDIR" ] && echo "Please create $BMDIR and populate it first."
+browser="librewolf --new-tab"
+tty -s && menu="fzf" || menu="rofi -dmenu"
+
+# Selecting link
+FILE="$BMDIR/$(cd "$BMDIR" && find . -type f -printf "%P\n" | $menu)"
+
+# Opening link
+[ -n "$FILE" ] && $browser "$(cat $FILE)"
