@@ -3,4 +3,4 @@ Type=Application
 Name=lf
 GenericName=File manager
 Comment="list files"
-Exec=alacritty -e /home/mokou/.local/bin/lfub %u
+Exec=st -e lfub %u

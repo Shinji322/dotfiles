@@ -3,4 +3,4 @@ Type=Application
 Name=Browser
 GenericName=Web Browser for accessing the web
 Comment="The most based web browser"
-Exec=/usr/bin/firefox %u
+Exec=/usr/bin/librewolf %u

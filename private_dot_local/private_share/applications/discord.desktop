@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Discord
+GenericName=Launches librewolf with discord
+Exec=/usr/bin/librewolf --new-tab 'https://discord.com/channels/@me'

@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Music Player
-Exec=alacritty -e ncmpcpp
+Exec=st -e ncmpcpp
