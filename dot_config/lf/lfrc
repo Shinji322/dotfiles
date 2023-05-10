@@ -136,7 +136,7 @@ map cg $lazygit
 
 # ==================== cd to common directories ==================================
 map gtr  cd ~/.local/share/Trash/files
-map gm   cd /run/media/patchouli
+map gm   cd /mnt
 
 map gv.  cd ~/vids
 map gva  cd ~/vids/anime

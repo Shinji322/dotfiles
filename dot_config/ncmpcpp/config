@@ -2,7 +2,7 @@
 
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
-mpd_music_dir = "~/mus"
+mpd_music_dir = "~/musc"
 message_delay_time = "1"
 visualizer_type = "spectrum"
 song_library_format = {%n - }{%t}|{%f}
